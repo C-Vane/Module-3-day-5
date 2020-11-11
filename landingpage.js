@@ -1,6 +1,7 @@
 window.onload = () => {
   datacontroller();
 };
+let data = [];
 const url_users = "https://jsonplaceholder.typicode.com/users";
 const get = (url) => {
   const response = fetch(url, {
@@ -19,7 +20,7 @@ async function getusers() {
 }
 
 const datacontroller = async () => {
-  let data = await getusers();
+  data = await getusers();
   let params = new URLSearchParams(document.location.search.substring(1));
   const id = params.get("id");
   let destination = document.getElementsByTagName("section")[0];

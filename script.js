@@ -8,7 +8,7 @@ const get = (url) => {
   });
   return response;
 };
-let userdata = [];
+let data = [];
 async function getusers() {
   try {
     let users = await get(url_users);
@@ -19,7 +19,7 @@ async function getusers() {
 }
 
 const datacontroller = async () => {
-  let data = await getusers();
+  data = await getusers();
   let destination = document.getElementsByTagName("tbody")[0];
   data.forEach((element) => {
     destination.innerHTML += ` 
@@ -32,7 +32,7 @@ const datacontroller = async () => {
     <td class="email">${element.email}</td>
   </tr>`;
   });
-
+  addressList();
   destination.parentElement.parentElement.appendChild(document.createTextNode("Users: " + displayNames()));
 };
 const searchUser = () => {
@@ -57,8 +57,7 @@ const displayNames = () => {
   return names;
 };
 
-const addressList = async () => {
-  let data = await getusers();
+const addressList = () => {
   let destination = document.querySelectorAll(".container")[1];
   let address = document.createElement("ul");
   let title = document.createElement("h4");
@@ -69,7 +68,6 @@ const addressList = async () => {
   destination.appendChild(title);
   destination.appendChild(address);
 };
-addressList();
 
 const sortAZ = (event) => {
   const names = [];
